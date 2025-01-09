@@ -5,18 +5,39 @@ public class BetterArray{
         array = new int[length];
     }
 
-     public BetterArray(){
+    public BetterArray(){
         array = new int[];
     }
 
-
-    public static int size(){
-        int size = 0;
+    public int size(){
+        int length = 0;
         for(int value: array){
             if(value != 0){
-                size += 1;
+                length += 1;
             }
         }
-        return size;
+        return length;
+    }
+
+    public boolean add(int item){
+
+    }
+
+    public void add(int index, int item){
+
+    }
+
+    public int get(int index){
+        return array[index];
+    }
+
+    public int set(int index, int item){
+        int before = array[index];
+        array[index] = item;
+        return before;
+    }
+
+    public int remove(int index){
+
     }
 }
