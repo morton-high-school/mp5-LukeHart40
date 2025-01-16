@@ -1,13 +1,16 @@
 public class BetterArray{
     public int[] array;
+    private int[] original;
     private int size;
     public BetterArray(int length){
         array = new int[length];
+        original = new int[length];
         size = length;
     }
 
     public BetterArray(){
         array = new int[0];
+        original = new int[0];
         size = 0;
     }
 
@@ -22,11 +25,12 @@ public class BetterArray{
     }
 
     public boolean add(int item){
-        int[] original = array;
         if(size == 0){
             array = new int[1];
             size = 1;
             array[0] = item;
+            original = new int[1];
+            original = array;
             return true;
         }else if(size() + 1 > size){
             size = size * 2;
@@ -35,13 +39,17 @@ public class BetterArray{
                 array[i] = original[i];
             }
             array[size() + 1] = item;
+            original = new int[size];
+            original = array;
             return true;
         }else{
             array = new int[size];
             for(int i = 0; i < original.length - 1; i++){
                 array[i] = original[i];
             }  
-            array[size() + 1] = item;  
+            array[size() + 1] = item; 
+            original = new int[size];
+            original = array; 
             return true;
         }
     }
