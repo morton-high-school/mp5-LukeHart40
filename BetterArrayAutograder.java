@@ -59,27 +59,40 @@ public class BetterArrayAutograder{
     BetterArray a2 = new BetterArray(6);
     a1.add(12);
     a1.add(42);
+    printArray(a1.array);
     a1.add(50);
+    printArray(a1.array);
 
 
 
     int[] b1 = {12, 42, 50, 0};
+    
     boolean t1 = arrayEquals(a1.array, b1);
 
     a1.add(2, 21);
     a1.add(0, 100);
 
     int[] b2 = {100, 12, 42, 21, 50, 0, 0, 0};
+   
     boolean t2 = arrayEquals(a1.array, b2);
 
+    printArray(a1.array);
+
     a2.add(20);
+    
     boolean t6 = a2.add(42);
+    
 
     int[] b3 = {20, 42, 0, 0, 0, 0};
     boolean t3 = arrayEquals(a2.array, b3);
 
+    printArray(a2.array);
+    
+
     boolean t4 = a1.size() == 5;
+    System.out.println(a1.size());
     boolean t5 = a2.size() == 2;
+    System.out.println(a2.size());
 
     if(!t1){
       System.out.println("Failed Add test 1.");

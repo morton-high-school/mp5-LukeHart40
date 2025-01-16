@@ -1,12 +1,14 @@
 public class BetterArray{
     public int[] array;
-    private static int size;
+    private int size;
     public BetterArray(int length){
         array = new int[length];
+        size = length;
     }
 
     public BetterArray(){
         array = new int[0];
+        size = 0;
     }
 
     public int size(){
@@ -21,19 +23,22 @@ public class BetterArray{
 
     public boolean add(int item){
         int[] original = array;
-        if(size() == 0){
+        if(size == 0){
             array = new int[1];
+            size = 1;
             array[0] = item;
             return true;
-        }else if(size() + 1 > array.length){
-            array = new int[array.length * 2];
-            for(int i = 0; i < original.length; i++){
+        }else if(size() + 1 > size){
+            size = size * 2;
+            array = new int[size];
+            for(int i = 0; i < original.length - 1; i++){
                 array[i] = original[i];
             }
             array[size() + 1] = item;
             return true;
         }else{
-            for(int i = 0; i < original.length; i++){
+            array = new int[size];
+            for(int i = 0; i < original.length - 1; i++){
                 array[i] = original[i];
             }  
             array[size() + 1] = item;  
@@ -43,7 +48,7 @@ public class BetterArray{
 
     public void add(int index, int item){
         int[] original = array;
-        if(size() > array.length){
+        if(size() + 1 < array.length){
             array = new int[array.length];
             for(int i = 0; i < original.length; i++){
                 int oldIndex = original[index];
@@ -54,11 +59,11 @@ public class BetterArray{
                 }else if(i == i + 1){
                     array[i] = oldIndex;
                 }
-
             }
-        }else if(size() < array.length){
-            array = new int[array.length + 1];
+        }else if(size() + 1 > array.length){
+            array = new int[array.length * 2];
             for(int i = 0; i < original.length; i++){
+                array = new int[array.length * 2];
                 int oldIndex = original[index];
                 array[i] = original[i];
                 if(i == index){
@@ -67,7 +72,6 @@ public class BetterArray{
                 }else if(i == i + 1){
                     array[i] = oldIndex;
                 }
-
             }
         }
     }
