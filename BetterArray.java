@@ -35,21 +35,19 @@ public class BetterArray{
         }else if(size() == size){
             size = size * 2;
             array = new int[size];
-            System.out.println(original[0]);
-            System.out.println(original.length);
-            for(int i = 0; i < original.length - 1; i++){
+            for(int i = 0; i < original.length; i++){
                 array[i] = original[i];
             }
-            array[size() + 1] = item;
+            array[size()] = item;
             original = new int[size];
             original = array;
             return true;
         }else{
             array = new int[size];
-            for(int i = 0; i < original.length - 1; i++){
+            for(int i = 0; i < original.length; i++){
                 array[i] = original[i];
             }  
-            array[size() + 1] = item; 
+            array[size()] = item; 
             original = new int[size];
             original = array; 
             return true;
@@ -57,32 +55,33 @@ public class BetterArray{
     }
 
     public void add(int index, int item){
-        int[] original = array;
-        if(size() + 1 < array.length){
-            array = new int[array.length];
-            for(int i = 0; i < original.length; i++){
-                int oldIndex = original[index];
-                array[i] = original[i];
-                if(i == index){
-                    array[i] = item;
-                    array[i + 1] = oldIndex;
-                }else if(i == i + 1){
-                    array[i] = oldIndex;
+        if(size() == size){
+            size = size * 2;
+            array = new int[size];
+            for(int i = 0; i <= original.length; i++){
+                if(i < index){
+                    array[i] = original[i];
+                }else if(i == index){
+                    array[index] = item;
+                }else if(i > index){
+                    array[i] = original[i - 1];
                 }
             }
-        }else if(size() + 1 > array.length){
-            array = new int[array.length * 2];
+            original = new int[size];
+            original = array;
+        }else{
+            array = new int[size];
             for(int i = 0; i < original.length; i++){
-                array = new int[array.length * 2];
-                int oldIndex = original[index];
-                array[i] = original[i];
-                if(i == index){
-                    array[i] = item;
-                    array[i + 1] = oldIndex;
-                }else if(i == i + 1){
-                    array[i] = oldIndex;
+                if(i < index){
+                    array[i] = original[i];
+                }else if(i == index){
+                    array[index] = item;
+                }else if(i > index){
+                    array[i] = original[i - 1];
                 }
             }
+            original = new int[size];
+            original = array;
         }
     }
 
@@ -96,7 +95,21 @@ public class BetterArray{
         return before;
     }
 
-    // public int remove(int index){
-
-    // }
+    public int remove(int index){
+        final int remove = original[index];
+        array = new int[size];
+        for(int i = index; i < original.length; i++){
+            array[i] = original[i];
+        }
+        for(int i = 0; i < original.length - 1; i++){
+            if(i < index){
+                array[i] = original[i];
+            }else if(i >= index){
+                array[i] = original[i + 1];
+            }
+        }
+        original = new int[size];
+        original = array;
+        return remove;
+    }
 }
