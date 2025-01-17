@@ -58,6 +58,7 @@ public class BetterArrayAutograder{
     BetterArray a1 = new BetterArray();
     BetterArray a2 = new BetterArray(6);
     a1.add(12);
+    printArray(a1.array);
     a1.add(42);
     printArray(a1.array);
     a1.add(50);

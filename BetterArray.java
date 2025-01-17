@@ -32,9 +32,11 @@ public class BetterArray{
             original = new int[1];
             original = array;
             return true;
-        }else if(size() + 1 > size){
+        }else if(size() == size){
             size = size * 2;
             array = new int[size];
+            System.out.println(original[0]);
+            System.out.println(original.length);
             for(int i = 0; i < original.length - 1; i++){
                 array[i] = original[i];
             }
